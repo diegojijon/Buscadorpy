@@ -1,1 +1,23 @@
-Archivo HTML que muestra la interfaz de la aplicacion
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV Search</title>
+</head>
+<body>
+    <h1>CSV Search</h1>
+    <form method="POST">
+        <label for="search_field">Campo:</label>
+        <select name="search_field" id="search_field">
+            {% for title in titles %}
+                <option value="{{ title }}">{{ title }}</option>
+            {% endfor %}
+        </select>
+        <label for="search_value">Valor:</label>
+        <input type="text" name="search_value" id="search_value">
+        <button type="submit">Buscar</button>
+    </form>
+    {{ tables[0]|safe }}
+</body>
+</html>
