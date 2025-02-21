@@ -33,7 +33,7 @@ mineral_tables = {
 
 # Agregar botones a la tabla principal
 df_main['Acciones'] = df_main['Nombre '].apply(
-    lambda x: f'<button class="load-table-btn" data-mineral="{x}">Ver Tabla</button>'
+    lambda x: f'<button type="submit" class="btn btn-info load-table-btn" data-mineral="{x}">Detalles</button>'
 )
 
 @app.route('/', methods=['GET', 'POST'])
@@ -42,8 +42,8 @@ def index():
         search_field = request.form['search_field']
         search_value = request.form['search_value']
         results = df_main[df_main[search_field].astype(str).str.contains(search_value, case=False, na=False)]
-        return render_template('index.html', tables=[results.to_html(classes='data', escape=False)], titles=df_main.columns.values)
-    return render_template('index.html', tables=[df_main.to_html(classes='data', escape=False)], titles=df_main.columns.values)
+        return render_template('index.html', tables=[results.to_html(classes='table-bordered', escape=False)], titles=df_main.columns.values)
+    return render_template('index.html', tables=[df_main.to_html(classes='table-bordered', escape=False)], titles=df_main.columns.values)
 
 # Ruta para cargar la tabla asociada
 @app.route('/load_table', methods=['POST'])
