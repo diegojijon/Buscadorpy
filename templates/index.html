@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buscador de Minerales</title>
+	<h1 class="text-center">Instituto de Investigación Geológico y Energético</h1>
+	<h2 class="text-center">Dirección de Gestión de la Información</h2>
+	<h4 class="text-center">Contacto: cristhian.contreras@geoenergia.gob.ec</h4>
+	<!-- <a href=mailto:“cristhian.contreras@geoenergia.gob.ec”>cristhian.contreras@geoenergia.gob.ec</a> -->
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- DataTables CSS -->
@@ -43,7 +47,7 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h1 class="text-center">Buscador de Minerales</h1>
+        <h2 class="text-center">Buscador de Minerales</h2>
         <form method="POST" class="mb-4">
             <div class="row g-3 align-items-center">
                 <div class="col-auto">
@@ -69,13 +73,13 @@
         </form>
 
         <!-- Tabla principal -->
-        <div class="table-responsive">
+        <div class="table-responsive">			
             {{ tables[0]|safe }}
         </div>
 
         <!-- Contenedor para la tabla asociada -->
         <div id="associated-table" class="hidden data-table mt-4">
-            <h2>Tabla Asociada</h2>
+            <h2>Especificaciones del mineral</h2>
             <table id="associated-data" class="display table table-striped table-bordered" style="width:100%">
                 <thead>
                     <tr>
