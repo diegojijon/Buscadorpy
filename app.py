@@ -17,15 +17,25 @@ def load_csv_from_google_drive(file_id):
 file_id_main = "1FgRL2aVx6jRsbLX7CGPRLytcb2aWlkcB"  # Tabla principal
 file_id_mineral1 = "1fd4uGPjzAsLSh0a8cS91rhTubbO8_YwS"  # Tabla del mineral 1
 file_id_mineral2 = "1qFdQrVTYHFF4C2Fd5lI4cjBH2imf6ehO"  # Tabla del mineral 2
+file_id_epi_fig="1flEw1mHpLUDSYKEXcKlNIuYFEruOC_Mf"
+file_id_pir_fig="1OcsXGgVbtHcWfBgaVCnW0h0j7N77jBF2"
 
 df_main = load_csv_from_google_drive(file_id_main)
 df_mineral1 = load_csv_from_google_drive(file_id_mineral1)
 df_mineral2 = load_csv_from_google_drive(file_id_mineral2)
 
+df_epi_fig = load_csv_from_google_drive(file_id_epi_fig)
+df_pir_fig = load_csv_from_google_drive(file_id_pir_fig)
+
 # Diccionario para mapear nombres de minerales a sus tablas
 mineral_tables = {
     "Epidota": df_mineral1,
     "Pirita": df_mineral2,
+}
+
+mineral_figuras = {
+    "Epidota": df_epi_fig,
+    "Pirita": df_pir_fig,
 }
 
 # URL de la imagen
@@ -52,18 +62,21 @@ def load_table():
     
     if mineral_name in mineral_tables:
         df = mineral_tables[mineral_name]
+        df1 = mineral_figuras[mineral_name]
         # Renombrar las columnas
         df.columns = ['Variable', 'Detalle']
         
         # Reordenar las columnas (asegurarse de que "Variable" esté primero)
         df = df[['Variable', 'Detalle']]
         
-        # Extraer el enlace de la imagen desde la posición [7, 1]
-        imagen_url = df.iloc[7, 1]  # Fila 7, columna 1
+        # Extraer el enlace de la imagen 
+        imagen_url1 = df1.iloc[0, 0]  
+        imagen_url2 = df1.iloc[1, 0]  
         # Devolver la tabla y la URL de la imagen
         return jsonify({
             "table": df.to_dict('records'),
-            "imagen_url": imagen_url
+            "imagen_url1": imagen_url1,
+            "imagen_url2": imagen_url2
         })
     return jsonify({"error": "Mineral no encontrado"}), 404
 
