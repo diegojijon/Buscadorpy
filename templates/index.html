@@ -6,7 +6,7 @@
     <title>Buscador de Minerales</title>
 	<h1 class="text-center">Instituto de Investigación Geológico y Energético</h1>
 	<h2 class="text-center">Dirección de Gestión de la Información</h2>
-	<h4 class="text-center">Contacto: cristhian.contreras@geoenergia.gob.ec</h4>
+	<h4 class="text-center">Contacto: soporte.minerales@geoenergia.gob.ec</h4>
 	<!-- <a href=mailto:“cristhian.contreras@geoenergia.gob.ec”>cristhian.contreras@geoenergia.gob.ec</a> -->
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -94,7 +94,12 @@
             <!-- Contenedor para la imagen -->
             <div id="associated-image" class="hidden mt-4">
                 <h2>Imagen</h2>
-                <img id="imagen-mineral" src="" alt="Imagen del mineral" class="img-fluid">
+                <img id="imagen-mineral" src="" alt="Imagen del mineral" class="img-fluid" width="100" height="100">
+            </div>
+			 <!-- Contenedor para la imagen -->
+            <div id="associated-image1" class="hidden mt-4">
+                <h2>Imagen</h2>
+                <img id="imagen-mineral1" src="" alt="Imagen del mineral" class="img-fluid" width="100" height="100">				
             </div>
         </div>
     </div>
@@ -130,6 +135,8 @@
                         const table = document.getElementById('associated-data');
                         const imageContainer = document.getElementById('associated-image');
                         const imagenElement = document.getElementById('imagen-mineral');
+						const imageContainer1 = document.getElementById('associated-image1');
+                        const imagenElement1 = document.getElementById('imagen-mineral1');
 
                         // Limpiar la tabla y la imagen anteriores
                         table.innerHTML = `
@@ -180,11 +187,18 @@
                         }
 
                         // Mostrar la imagen
-                        if (data.imagen_url) {
-                            imagenElement.src = data.imagen_url;
+                        if (data.imagen_url1) {
+                            imagenElement.src = data.imagen_url1;
                             imageContainer.classList.remove('hidden');
                         } else {
                             imageContainer.classList.add('hidden');
+                        }
+						// Mostrar la imagen
+                        if (data.imagen_url2) {
+                            imagenElement1.src = data.imagen_url2;
+                            imageContainer1.classList.remove('hidden');
+                        } else {
+                            imageContainer1.classList.add('hidden');
                         }
                     })
                     .catch(error => {
